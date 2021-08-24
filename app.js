@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+require("dotenv").config();
+
 app.set("views", "views");
 app.set("template engine", "ejs");
 
