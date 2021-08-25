@@ -13,7 +13,7 @@ exports.postTicketForm = async (req, res) => {
                 customer_id: 1, //this is temporary until sessions are implemented
                 department_id: req.body.department_id,
                 priority_level_id: req.body.priority_level_id,
-                channel: 2,
+                channel_id: 2,
                 status_id: 1,
             },
         });

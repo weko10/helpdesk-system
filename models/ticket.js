@@ -7,7 +7,6 @@ const Ticket = {};
 Ticket.create = (options = {}) => {
     //Inserts a new ticket using procedure
     //Procedure parameters in order:
-    // ticket_id IS NOT NULL,
     // customer_id IS NOT NULL,
     // department_id IS NOT NULL,
     // priority_level_id IS NOT NULL,
@@ -22,13 +21,13 @@ Ticket.create = (options = {}) => {
             throw new Error("Options argrument was not passed any attributes");
         const attributes = options.attributes;
 
-        return pool.execute("CALL insert_or_update_ticket(?, ?, ?, ?, ?, ?, ?)", [
+        return pool.execute("CALL insert_or_update_ticket(0, ?, ?, ?, ?, ?, ?, ?)", [
             attributes.customer_id || null,
             attributes.department_id || null,
             attributes.priority_level_id || null,
             attributes.channel_id || null,
-            attributes.category_id || null,
             attributes.status_id || null,
+            attributes.category_id || null,
             attributes.current_agent_id || null,
         ]);
     } catch (err) {
