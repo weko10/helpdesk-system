@@ -3,15 +3,26 @@
 <body>
     <head><h1>Ticketing System Demo</h1></head>
     <main>
-        <form action="#">
+        <form action="http://localhost:3000/support/new-ticket" method="POST">
             <label for="name">Name:</label>
             <input id="name" name="name" type="text" required>
             <label for="email">Email:</label>
             <input id="email" type="email" name="email" required>
-            <label for="subject">Subject:</label>
-            <input id= "subject" type="text" name="subject" required>
+            <label for="department_id">Choose department</label>
+            <select id="department_id" name="department_id">
+                <option value="1">Sales</option>
+                <option value="2">Technical</option>
+                <option value="3">Billing</option>
+            </select>
+            <label for="priority_level_id">Choose problem severity</label>
+            <select id="priority_level_id" name="priority_level_id">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+            </select>
             <label for="messege">Message:</label>
             <input id="messege" type="text" name="messege" required>
+            <input type="submit" value="Submit">
         </form>
     </main>
 <%- include("./inc/end.ejs") %>
