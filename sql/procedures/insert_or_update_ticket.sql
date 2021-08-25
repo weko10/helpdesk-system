@@ -2,16 +2,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_or_update_ticket`(
 	_ticket_id INT,
 	_customer_id INT,
     _department_id INT,
-    _status_id INT,
     _priority_level_id INT,
     _channel_id INT,
+    _status_id INT,
     _category_id INT,
     _current_agent_id INT
 )
 BEGIN
 	IF _ticket_id <= 0 THEN
-		INSERT INTO ticket (customer_id, department_id, category_id, status_id, priority_level_id, channel_id)
-        VALUES (_customer_id, _department_id, _category_id, _status_id, _priority_level_id, _channel_id);
+		INSERT INTO ticket (customer_id, department_id, priority_level_id, channel_id, status_id, category_id, current_agent_id)
+        VALUES (_customer_id, _department_id, _priority_level_id, _channel_id, _status_id, _category_id, current_agent_id);
     ELSE
 		UPDATE ticket
         SET
