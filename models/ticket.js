@@ -4,7 +4,7 @@ const pool = require("../util/database");
 
 const Ticket = {};
 
-Ticket.create = async (options = {}) => {
+Ticket.create = (options = {}) => {
     //Inserts a new ticket using procedure
     //Procedure parameters in order:
     // ticket_id IS NOT NULL,
