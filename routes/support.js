@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const controller = require("../controllers/ticket");
+const controller = require("../controllers/support");
 
 router.get("/new-ticket", controller.getTicketForm);
 
