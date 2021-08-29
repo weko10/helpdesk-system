@@ -11,6 +11,7 @@ app.set("template engine", "ejs");
 app.listen(3000, console.log("App is listening on http://localhost:3000/"));
 
 const ticketRouter = require("./routes/ticket");
+const homeRouter = require("./routes/shop");
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -23,4 +24,5 @@ app.use(
     })
 );
 
+app.use("/", homeRouter);
 app.use("/support", ticketRouter);
