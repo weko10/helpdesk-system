@@ -13,6 +13,7 @@ app.listen(3000, console.log("App is listening on http://localhost:3000/"));
 const ticketRouter = require("./routes/ticket");
 const homeRouter = require("./routes/shop");
 
+app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(
