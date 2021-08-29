@@ -1,0 +1,56 @@
+header > h1,
+main > h1 {
+    text-align: center;
+    margin: 35px;
+}
+
+input,
+textarea {
+    border: none;
+    border: solid 1px;
+    border-radius: 7px;
+}
+
+.knowledge_base input {
+    font-size: 1.2rem;
+    margin: 0 auto;
+    padding: 1.4rem 2rem;
+    width: 85%;
+    display: block;
+}
+
+.contact_us {
+    margin: auto;
+    width: 450px;
+    clear: both;
+}
+
+.contact_us input#name,
+.contact_us input#email,
+.contact_us input#subject,
+.contact_us textarea {
+    margin: 0.5rem 0;
+    clear: both;
+    padding: 2rem;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.contact_us input#name,
+.contact_us input#email,
+.contact_us input#subject {
+    height: 0.7rem;
+}
+
+.contact_us input[type="submit"] {
+    width: 6rem;
+    color: white;
+    background: #1177ca;
+    height: 2rem;
+    float: right;
+}
+
+.contact_us textarea {
+    padding-top: 1.5rem;
+    height: 10rem;
+}
