@@ -2,6 +2,12 @@
 
 const Ticket = require("../models/ticket");
 
+exports.getHome = (req, res) => {
+    res.render("support/home.ejs", {
+        pageTitle: "Support",
+    });
+};
+
 exports.getTicketForm = (req, res) => {
     res.render("ticket-form.ejs", { pageTitle: "New Ticket" });
 };
