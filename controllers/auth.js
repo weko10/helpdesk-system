@@ -10,10 +10,17 @@ exports.getSignup = (req, res) => {
 
 exports.postSignup = async (req, res, next) => {
     try {
+        //check if another account has the same email
+        const [[isExist]] = await User.isExist({ where: { email: req.body.email } });
+        if (isExist.result) {
+            throw new Error("Email already belongs to existing account");
+        }
+
+        //create new user in database
         User.create({ attributes: req.body });
         res.redirect("/");
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 };
 
