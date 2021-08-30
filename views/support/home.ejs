@@ -12,25 +12,10 @@
             <input id="search" type="text" name="search" placeholder="Search" />
         </div>
 
-        <h1>Can't find an answer? You can contact us.</h1>
+        <h1>Can't find an answer?</h1>
         <div class="contact_us">
-            <form class="contact_us_form" action="#" method="post">
-                <input id="name" type="text" name="name" placeholder="Name" />
-                <input id="email" type="email" name="email" placeholder="Email" />
-                <input
-                    id="subject"
-                    type="text"
-                    name="subject"
-                    placeholder="Subject"
-                />
-                <textarea
-                    name="message"
-                    id="message"
-                    placeholder="Message"
-                    cols="60"
-                    rows="10"
-                ></textarea>
-                <input type="submit" value="Submit" />
+            <form class="contact_us_form" action="/support/new-ticket" method="GET">
+                <input type="submit" value="Contact Us" />
             </form>
         </div>
     </main>
