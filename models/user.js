@@ -30,4 +30,17 @@ User.create = (options = {}) => {
     }
 };
 
+User.findByPK = (options = {}) => {
+    try {
+        //validate options param
+        if (options.where === {})
+            throw new Error("Options argrument was not passed any where filters");
+        const where = options.where;
+
+        return pool.execute("SELECT * FROM user WHERE id = ?", [where.id || null]);
+    } catch (err) {
+        throw new Error(err);
+    }
+};
+
 module.exports = User;
