@@ -30,6 +30,28 @@ exports.getLogin = (req, res) => {
     });
 };
 
+exports.postLogin = async (req, res) => {
+    try {
+        //check if this email belongs to an existing email
+        const [[isExist]] = await User.isExist({ where: { email: req.body.email } });
+        if (!isExist.result) {
+            throw new Error("Email does not belong to any acount");
+        }
+
+        const [[[user]]] = await User.findAll({ where: { email: req.body.email } });
+        //check password
+        const checkPassword = user.password === req.body.password;
+        if (!checkPassword) {
+            throw new Error("Wrong password");
+        }
+
+        req.session.isAuth = true;
+        res.redirect("/");
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 exports.getDashboardAccount = (req, res) => {
     //render dashboard with account info page
     res.render("auth/dashboard-account.ejs", {
