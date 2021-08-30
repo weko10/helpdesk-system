@@ -18,16 +18,16 @@
 .box input[type="text"],
 .box select {
     font-size: medium;
-    border: 0;
-    background: none;
+    /* border: 0; */
+    /* background: none; */
     margin: 15px auto;
     text-align: center;
-    border: 2.5px solid white;
+    /* border: 2.5px solid white; */
     padding: 14px 10px;
     width: 300px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
+    /* outline: none; */
+    /* color: white; */
+    border-radius: 10px;
 }
 
 .box select option {
@@ -35,26 +35,26 @@
 }
 
 .box input[type="email"] {
-    display: block;
+    /* display: block; */
 }
 
 .box input[type="submit"] {
     font-size: large;
     border: 0;
-    background: none;
-    display: block;
+    /* background: none; */
+    /* display: block; */
     margin: 20px auto;
     text-align: center;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     padding: 14px 40px;
-    outline: none;
-    color: white;
+    /* outline: none; */
+    /* color: white; */
     border-radius: 24px;
     cursor: pointer;
 }
 
 .box input[type="submit"]:hover {
-    background: #009879;
+    background: #2c4ee7;
 }
 
 /* for toggle password visibility */
