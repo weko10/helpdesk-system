@@ -6,8 +6,12 @@
     <div class="nav-links">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/">Log In</a></li>
-            <li><a href="/dashboard/account">Dashboard</a></li>
+            <% if (!isAuth) { %>
+                <li><a href="/auth/login">Log In</a></li>
+
+            <% } else if(isAuth) { %>
+                <li><a href="/dashboard/account">Dashboard</a></li>
+                <% } %>
             <li><a href="/support">Support</a></li>
         </ul>
     </div>
