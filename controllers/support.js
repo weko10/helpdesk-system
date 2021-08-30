@@ -10,7 +10,7 @@ exports.getHome = (req, res) => {
 
 exports.getAuthNewTicketForm = (req, res) => {
     //Ticket form for authenticated users, views as part of dashboard
-    res.render("support/dashboard-new-ticket", {
+    res.render("support/dashboard-new-ticket.ejs", {
         pageTitle: "Dashboard-New Ticket",
     });
 };
