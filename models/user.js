@@ -43,6 +43,24 @@ User.findByPK = (options = {}) => {
     }
 };
 
+User.findAll = (options = {}) => {
+    // _id INT,
+    // _email VARCHAR(64)
+    try {
+        //validate options param
+        if (options.where === {})
+            throw new Error("Options argrument was not passed any where filters");
+        const where = options.where;
+
+        return pool.execute("CALL get_all_users(?, ?)", [
+            where.id || null,
+            where.email || null,
+        ]);
+    } catch (err) {
+        throw new Error(err);
+    }
+};
+
 User.isExist = (options = {}) => {
     //Checks if a user exists by user id or email or both
     try {
