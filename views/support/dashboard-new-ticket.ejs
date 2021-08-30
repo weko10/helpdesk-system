@@ -1,0 +1,57 @@
+<%- include("../inc/head.ejs") %>
+<link rel="stylesheet" href="/css/nav.css" />
+<link rel="stylesheet" href="/css/dashboard.css">
+<link rel="stylesheet" href="/css/dashboard-new-ticket.css" />
+</head>
+<body>
+    <%- include("../inc/nav.ejs") %>
+    <main>
+        <%- include("../inc/side-nav.ejs") %>
+        <div class="dashboard_box new_ticket_box">
+            <h1>Open Ticket</h1>
+            <form id="ticket_form" action="#" method="post">
+                <div id="first_line">
+                    <div id="name">
+                        <label for="name">Name:</label>
+                        <input id="name" type="text" value="test" disabled />
+                    </div>
+                    <div id="email">
+                        <label for="email">Email:</label>
+                        <input
+                            id="email"
+                            type="email"
+                            value="test@gmail.com"
+                            disabled
+                        />
+                    </div>
+                </div>
+
+                <div id="second_line">
+                    <div id="subject">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" />
+                    </div>
+                    <div id="priority">
+                        <label for="priority">Priority:</label>
+                        <select name="priority" id="priority">
+                            <option value="1">Low</option>
+                            <option value="2" selected>Medium</option>
+                            <option value="3">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="message">
+                    <label for="message">Message:</label>
+                    <textarea
+                        name="message"
+                        id="message"
+                        cols="50"
+                        rows="10"
+                    ></textarea>
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </main>
+<%- include("../inc/end.ejs") %>
