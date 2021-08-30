@@ -61,3 +61,12 @@ exports.getDashboardAccount = (req, res) => {
         isAuth: req.session.isAuth,
     });
 };
+
+exports.logout = (req, res) => {
+    try {
+        req.session.destroy();
+        res.redirect("/");
+    } catch (err) {
+        console.log(err);
+    }
+};
