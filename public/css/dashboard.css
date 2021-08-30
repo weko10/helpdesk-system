@@ -1,0 +1,9 @@
+main > div {
+    display: inline-block;
+}
+
+.dashboard_box {
+    background-color: whitesmoke;
+    padding: 2rem;
+    margin-top: 70px;
+}

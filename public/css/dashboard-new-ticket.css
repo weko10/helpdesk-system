@@ -1,0 +1,68 @@
+/* positioning */
+.new_ticket_box #ticket_form div#name,
+.new_ticket_box #ticket_form div#email {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.new_ticket_box #ticket_form div#subject,
+.new_ticket_box #ticket_form div#priority {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.new_ticket_box #ticket_form div label {
+    display: block;
+}
+
+.new_ticket_box #ticket_form div#message {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+/* positioning */
+
+/* style inputs */
+.new_ticket_box #ticket_form input,
+.new_ticket_box #ticket_form textarea,
+.new_ticket_box #ticket_form select {
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    padding: 2rem 2rem;
+    padding: 2px;
+}
+
+.new_ticket_box #ticket_form #name {
+    width: 15rem;
+}
+
+.new_ticket_box #ticket_form #email {
+    width: 33rem;
+}
+
+.new_ticket_box #ticket_form #subject {
+    width: 37rem;
+}
+
+.new_ticket_box #ticket_form #priority {
+    width: 11rem;
+}
+
+.new_ticket_box #ticket_form #message {
+    width: 50rem;
+}
+
+.new_ticket_box #ticket_form input[type="submit"] {
+    border: none;
+    float: right;
+    width: 6rem;
+    color: white;
+    background: #1177ca;
+    height: 2rem;
+}
+/* style inputs */

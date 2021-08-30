@@ -1,0 +1,15 @@
+.account_info {
+    margin-left: 50px;
+    padding: 15px;
+}
+
+.account_info main ul {
+    padding: 0;
+    margin-bottom: 0.7rem;
+    list-style-type: none;
+}
+
+.account_info main ul li {
+    font-size: 140%;
+    display: inline-block;
+}
