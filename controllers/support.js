@@ -5,6 +5,7 @@ const Ticket = require("../models/ticket");
 exports.getHome = (req, res) => {
     res.render("support/home.ejs", {
         pageTitle: "Support",
+        isAuth: req.session.isAuth,
     });
 };
 
@@ -12,6 +13,7 @@ exports.getAuthNewTicketForm = (req, res) => {
     //Ticket form for authenticated users, views as part of dashboard
     res.render("support/dashboard-new-ticket.ejs", {
         pageTitle: "Dashboard-New Ticket",
+        isAuth: req.session.isAuth,
     });
 };
 

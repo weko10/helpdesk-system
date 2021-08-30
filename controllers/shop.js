@@ -4,5 +4,6 @@ exports.getHome = (req, res) => {
     //empty page till now
     res.render("shop/home.ejs", {
         pageTitle: "Home",
+        isAuth: req.session.isAuth,
     });
 };
