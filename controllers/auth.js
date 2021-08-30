@@ -9,9 +9,9 @@ exports.getSignup = (req, res) => {
 };
 
 exports.postSignup = async (req, res, next) => {
-    console.log(req.body);
     try {
         User.create({ attributes: req.body });
+        res.redirect("/");
     } catch (err) {
         res.send(err);
     }
