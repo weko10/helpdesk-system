@@ -1,6 +1,6 @@
-exports.getDashboardAccInfo = (req, res) => {
-    //acc => account
-    res.render("auth/dashboard-acc-info.ejs", {
-        pageTitle: "Dashboard",
+exports.getDashboardAccount = (req, res) => {
+    //render dashboard with account info page
+    res.render("auth/dashboard-account.ejs", {
+        pageTitle: "Dashboard-Account",
     });
 };
