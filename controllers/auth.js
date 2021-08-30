@@ -1,7 +1,20 @@
+//responsible for authenticating users and operations on sensitive user data
+
+const User = require("../models/user");
+
 exports.getSignup = (req, res) => {
     res.render("auth/signup.ejs", {
         pageTitle: "Sign Up",
     });
+};
+
+exports.postSignup = async (req, res, next) => {
+    console.log(req.body);
+    try {
+        User.create({ attributes: req.body });
+    } catch (err) {
+        res.send(err);
+    }
 };
 
 exports.getLogin = (req, res) => {
