@@ -43,4 +43,21 @@ User.findByPK = (options = {}) => {
     }
 };
 
+User.isExist = (options = {}) => {
+    //Checks if a user exists by user id or email or both
+    try {
+        //validate options param
+        if (options.where === {})
+            throw new Error("Options argrument was not passed any where filters");
+        const where = options.where;
+
+        return pool.execute("SELECT is_user_exist(?, ?)", [
+            where.id || null,
+            where.email || null,
+        ]);
+    } catch (err) {
+        throw new Error(err);
+    }
+};
+
 module.exports = User;
