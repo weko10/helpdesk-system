@@ -4,6 +4,8 @@ const controller = require("../controllers/support");
 
 router.get("/", controller.getHome);
 
+router.get("/dashboard/new-ticket", controller.getAuthNewTicketForm);
+
 // router.get("/new-ticket", controller.getTicketForm);
 
 // router.post("/new-ticket", controller.postTicketForm);

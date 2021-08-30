@@ -8,6 +8,13 @@ exports.getHome = (req, res) => {
     });
 };
 
+exports.getAuthNewTicketForm = (req, res) => {
+    //Ticket form for authenticated users, views as part of dashboard
+    res.render("support/dashboard-new-ticket", {
+        pageTitle: "Dashboard-New Ticket",
+    });
+};
+
 // exports.postTicketForm = async (req, res) => {
 //     try {
 //         await Ticket.create({
