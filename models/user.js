@@ -51,7 +51,7 @@ User.isExist = (options = {}) => {
             throw new Error("Options argrument was not passed any where filters");
         const where = options.where;
 
-        return pool.execute("SELECT is_user_exist(?, ?)", [
+        return pool.execute("SELECT is_user_exist(?, ?) AS result", [
             where.id || null,
             where.email || null,
         ]);
