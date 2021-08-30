@@ -30,4 +30,4 @@ User.create = (options = {}) => {
     }
 };
 
-module.exports = Ticket;
+module.exports = User;
