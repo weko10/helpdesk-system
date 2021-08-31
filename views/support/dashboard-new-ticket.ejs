@@ -29,17 +29,28 @@
                 </div>
 
                 <div id="second_line">
-                    <div id="subject">
-                        <label for="subject">Subject:</label>
-                        <input type="text" id="subject" />
+                    <div id="department">
+                        <label for="department">Department:</label>
+                        <select name="department_id" id="department">
+                            <option value="1">Sales</option>
+                            <option value="2">Technical</option>
+                            <option value="3">Billing</option>
+                        </select>
                     </div>
                     <div id="priority">
                         <label for="priority">Priority:</label>
-                        <select name="priority" id="priority">
+                        <select name="priority_level_id" id="priority">
                             <option value="1">Low</option>
                             <option value="2" selected>Medium</option>
                             <option value="3">High</option>
                         </select>
+                    </div>
+                </div>
+
+                <div id="third_line">
+                    <div id="subject">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" />
                     </div>
                 </div>
 
