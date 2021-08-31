@@ -29,4 +29,4 @@ app.use(flush());
 
 app.use("/", homeRouter);
 app.use(authRouter);
-app.use("/support", supportRouter);
+app.use(supportRouter);
