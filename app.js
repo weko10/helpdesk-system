@@ -4,6 +4,7 @@ const app = express();
 require("dotenv").config();
 const session = require("express-session");
 const sessionStore = require("./util/session");
+const flush = require("connect-flash");
 
 app.set("views", "views");
 app.set("template engine", "ejs");
@@ -16,7 +17,6 @@ const authRouter = require("./routes/auth");
 
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
-
 app.use(
     session({
         secret: process.env.SESSIONSECRET,
@@ -25,6 +25,7 @@ app.use(
         store: sessionStore,
     })
 );
+app.use(flush());
 
 app.use("/", homeRouter);
 app.use(authRouter);
