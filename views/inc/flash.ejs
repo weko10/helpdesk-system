@@ -1,0 +1,11 @@
+<div class="flash">
+    <% if (message.length > 0) { %>
+        <div class="message">
+            <p id="message"><%= message %> </p>
+        </div>
+    <% } else if (error.length > 0) {%>
+        <div class="error">
+            <p id="error"><%= error %> </p>
+        </div>
+    <% } %>
+</div>
