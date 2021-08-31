@@ -29,6 +29,7 @@ exports.getLogin = (req, res) => {
     res.render("auth/login.ejs", {
         pageTitle: "Login In",
         isAuth: req.session.isAuth,
+        message: req.flash("message"),
     });
 };
 

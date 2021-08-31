@@ -2,5 +2,6 @@ exports.isAuth = (req, res, next) => {
     if (req.session.isAuth) {
         return next();
     }
-    return res.redirect(303, "/");
+    req.flash("message", "Please login with your account first");
+    return res.redirect(303, "/auth/login");
 };

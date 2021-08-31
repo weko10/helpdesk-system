@@ -6,6 +6,10 @@
 <body>
     <%- include("../inc/nav.ejs") %>
     <main>
+        <% if (message.length > 0) { %>
+            <p><%= message %></p>
+        <% } %>
+
         <h1>Login:</h1>
         <form class="box" action="/auth/login" method="POST">
             <input id="email" type="email" name="email" placeholder="Email" required />
