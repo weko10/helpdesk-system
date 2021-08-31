@@ -11,14 +11,26 @@ exports.getSignup = (req, res) => {
 
 exports.postSignup = async (req, res, next) => {
     try {
+        const { username, email, password, phone, home_address } = req.body;
+
         //check if another account has the same email
-        const [[isExist]] = await User.isExist({ where: { email: req.body.email } });
+        const [[isExist]] = await User.isExist({ where: { email: email } });
         if (isExist.result) {
             throw new Error("Email already belongs to existing account");
         }
 
         //create new user in database
-        User.create({ attributes: req.body });
+        User.create({
+            attributes: {
+                username: username,
+                email: email,
+                password: password,
+                phone: phone,
+                homeAddress: home_address,
+            },
+        });
+
+        req.flash("message", "Account created succesfully!");
         res.redirect("/");
     } catch (err) {
         console.log(err);
