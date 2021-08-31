@@ -23,7 +23,7 @@ User.create = (options = {}) => {
             attributes.email || null,
             attributes.password || null,
             attributes.phone || null,
-            attributes.home_address || null,
+            attributes.homeAddress || null,
         ]);
     } catch (err) {
         throw new Error(err);

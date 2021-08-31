@@ -22,13 +22,13 @@ Ticket.create = (options = {}) => {
         const attributes = options.attributes;
 
         return pool.execute("CALL insert_or_update_ticket(0, ?, ?, ?, ?, ?, ?, ?)", [
-            attributes.customer_id || null,
-            attributes.department_id || null,
-            attributes.priority_level_id || null,
-            attributes.channel_id || null,
-            attributes.status_id || null,
-            attributes.category_id || null,
-            attributes.current_agent_id || null,
+            attributes.customerId || null,
+            attributes.departmentId || null,
+            attributes.priorityLevelId || null,
+            attributes.channelId || null,
+            attributes.statusId || null,
+            attributes.categoryId || null,
+            attributes.currentAgentId || null,
         ]);
     } catch (err) {
         res.send(err);
@@ -50,10 +50,10 @@ Ticket.createMessage = (options = {}) => {
         const attributes = options.attributes;
 
         return pool.execute("CALL insert_ticket_message(?, ?, ?, ?)", [
-            attributes.ticket_id || null,
+            attributes.ticketId || null,
             attributes.subject || null,
             attributes.body || null,
-            attributes.from_agent,
+            attributes.fromAgent,
         ]);
     } catch (err) {
         res.send(err);
