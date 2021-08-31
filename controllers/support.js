@@ -20,7 +20,8 @@ exports.getNewTicketForm = (req, res) => {
 
 exports.postNewTicket = async (req, res) => {
     try {
-        await Ticket.create({
+        //insert new ticket in database
+        const [[[ticket]]] = await Ticket.create({
             attributes: {
                 customer_id: req.session.userData.id, //established on login
                 department_id: req.body.department_id,
@@ -29,6 +30,17 @@ exports.postNewTicket = async (req, res) => {
                 status_id: 1,
             },
         });
+
+        // insert initial message in database
+        await Ticket.createMessage({
+            attributes: {
+                ticket_id: ticket.ticket_id,
+                subject: req.body.subject,
+                body: req.body.message,
+                from_agent: 0,
+            },
+        });
+
         res.send({ message: "success" });
     } catch (err) {
         res.send(err);

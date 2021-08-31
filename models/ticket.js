@@ -35,4 +35,29 @@ Ticket.create = (options = {}) => {
     }
 };
 
+Ticket.createMessage = (options = {}) => {
+    //Inserts new ticket message using procedure
+    //Procedure attributes:
+    // _ticket_id INT,
+    // _subject VARCHAR(255),
+    // _body TEXT,
+    // _from_agent BOOLEAN
+
+    try {
+        //validate options param
+        if (options.attributes === {})
+            throw new Error("Options argrument was not passed any attributes");
+        const attributes = options.attributes;
+
+        return pool.execute("CALL insert_ticket_message(?, ?, ?, ?)", [
+            attributes.ticket_id || null,
+            attributes.subject || null,
+            attributes.body || null,
+            attributes.from_agent,
+        ]);
+    } catch (err) {
+        res.send(err);
+    }
+};
+
 module.exports = Ticket;
