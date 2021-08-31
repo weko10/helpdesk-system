@@ -49,6 +49,12 @@ exports.postLogin = async (req, res) => {
         }
 
         req.session.isAuth = true;
+        req.session.userData = {
+            username: user.username,
+            email: user.email,
+            phone: user.phone,
+            homeAddress: user.home_address,
+        };
         res.redirect("/");
     } catch (err) {
         console.log(err);
@@ -60,6 +66,7 @@ exports.getDashboardAccount = (req, res) => {
     res.render("auth/dashboard-account.ejs", {
         pageTitle: "Dashboard-Account",
         isAuth: req.session.isAuth,
+        userData: req.session.userData,
     });
 };
 
