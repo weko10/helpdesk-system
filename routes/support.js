@@ -1,10 +1,11 @@
 const router = require("express").Router();
 
 const controller = require("../controllers/support");
+const auth = require("../middleware/is-auth");
 
-router.get("/", controller.getHome);
+router.get("/support", controller.getHome);
 
-router.get("/dashboard/new-ticket", controller.getAuthNewTicketForm);
+router.get("/dashboard/new-ticket", auth.isAuth, controller.getAuthNewTicketForm);
 
 // router.get("/new-ticket", controller.getTicketForm);
 
