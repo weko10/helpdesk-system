@@ -50,6 +50,7 @@ exports.postLogin = async (req, res) => {
 
         req.session.isAuth = true;
         req.session.userData = {
+            id: user.id,
             username: user.username,
             email: user.email,
             phone: user.phone,
