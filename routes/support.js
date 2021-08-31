@@ -7,8 +7,6 @@ router.get("/support", controller.getHome);
 
 router.get("/dashboard/new-ticket", auth.isAuth, controller.getNewTicketForm);
 
-// router.get("/new-ticket", controller.getTicketForm);
-
-// router.post("/new-ticket", controller.postTicketForm);
+router.post("/dashboard/new-ticket", auth.isAuth, controller.postNewTicket);
 
 module.exports = router;
