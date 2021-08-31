@@ -14,6 +14,7 @@ exports.getNewTicketForm = (req, res) => {
     res.render("support/dashboard-new-ticket.ejs", {
         pageTitle: "Dashboard-New Ticket",
         isAuth: req.session.isAuth,
+        userData: req.session.userData,
     });
 };
 
