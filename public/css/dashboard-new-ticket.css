@@ -6,11 +6,16 @@
     display: inline-block;
 }
 
-.new_ticket_box #ticket_form div#subject,
+.new_ticket_box #ticket_form div#department,
 .new_ticket_box #ticket_form div#priority {
     margin: 0.5rem;
     padding: 0.5rem;
     display: inline-block;
+}
+
+.new_ticket_box #ticket_form div#subject {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .new_ticket_box #ticket_form div label {
@@ -45,12 +50,17 @@
     width: 33rem;
 }
 
-.new_ticket_box #ticket_form #subject {
-    width: 37rem;
+.new_ticket_box #ticket_form #priority {
+    width: 20rem;
 }
 
-.new_ticket_box #ticket_form #priority {
-    width: 11rem;
+.new_ticket_box #ticket_form #department {
+    width: 20rem;
+}
+
+.new_ticket_box #ticket_form #subject {
+    float: right;
+    width: 50rem;
 }
 
 .new_ticket_box #ticket_form #message {
