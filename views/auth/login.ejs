@@ -6,9 +6,7 @@
 <body>
     <%- include("../inc/nav.ejs") %>
     <main>
-        <% if (message.length > 0) { %>
-            <p><%= message %></p>
-        <% } %>
+        <%- include("../inc/flash.ejs") %>
 
         <h1>Login:</h1>
         <form class="box" action="/auth/login" method="POST">
