@@ -1,7 +1,6 @@
 DROP PROCEDURE IF EXISTS get_all_tickets;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_all_tickets`(
 	_user_id INT,
-    _user_email VARCHAR(64)
 )
 BEGIN
 	SELECT
