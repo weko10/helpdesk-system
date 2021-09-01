@@ -13,11 +13,11 @@ Ticket.findAll = (options = {}) => {
         if (options.where === undefined) {
             throw new Error("where option was not passed");
         }
-        const where = option.where;
+        const where = options.where;
 
         return pool.execute("CALL get_all_tickets(?)", [where.customerId || null]);
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 };
 
