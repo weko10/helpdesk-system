@@ -47,7 +47,9 @@ exports.postNewTicket = async (req, res) => {
 
         res.send({ message: "success" });
     } catch (err) {
-        res.status(400).send(err);
+        console.log(err);
+        req.flash("error", "An error occured. Please try again!");
+        res.redirect("/");
     }
 };
 
@@ -66,5 +68,7 @@ exports.getTicketsTable = async (req, res) => {
         });
     } catch (err) {
         console.log(err);
+        req.flash("error", "An error occured. Please try again!");
+        res.redirect("/");
     }
 };

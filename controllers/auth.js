@@ -36,6 +36,8 @@ exports.postSignup = async (req, res, next) => {
         res.redirect("/");
     } catch (err) {
         console.log(err);
+        req.flash("error", "An error occured. Please try again!");
+        res.redirect("/");
     }
 };
 
@@ -74,6 +76,8 @@ exports.postLogin = async (req, res) => {
         res.redirect("/");
     } catch (err) {
         console.log(err);
+        req.flash("error", "An error occured. Please try again!");
+        res.redirect("/");
     }
 };
 
@@ -94,5 +98,7 @@ exports.logout = (req, res) => {
         res.redirect("/");
     } catch (err) {
         console.log(err);
+        req.flash("error", "An error occured. Please try again!");
+        res.redirect("/");
     }
 };
