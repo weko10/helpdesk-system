@@ -22,6 +22,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% for( let i = 0; i < tickets.length; i++ ) { %>
+                        <tr>
+                            <th><%= tickets[i].ticket_id %></th>
+                            <th><%= tickets[i].department %></th>
+                            <th><%= tickets[i].subject %></th>
+                            <th><%= tickets[i].status %></th>
+                            <th><%= tickets[i].created_at %></th>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
