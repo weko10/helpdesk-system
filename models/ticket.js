@@ -4,6 +4,23 @@ const pool = require("../util/database");
 
 const Ticket = {};
 
+Ticket.findAll = (options = {}) => {
+    //Fetches all tickets by user id
+    //Procdure parameters:
+    // _user_id INT
+
+    try {
+        if (options.where === undefined) {
+            throw new Error("where option was not passed");
+        }
+        const where = option.where;
+
+        return pool.execute("CALL get_all_tickets(?)", [where.customerId || null]);
+    } catch (err) {
+        res.send(err);
+    }
+};
+
 Ticket.create = (options = {}) => {
     //Inserts a new ticket using procedure
     //Procedure parameters in order:
