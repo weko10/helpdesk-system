@@ -7,3 +7,23 @@ body {
     padding: 0px;
     font-family: "segoe ui";
 }
+
+body > main > div.flash div.message {
+    background-color: rgba(39, 156, 39, 0.472);
+}
+
+body > main > div.flash div.error {
+    background-color: rgba(255, 0, 0, 0.418);
+}
+
+body > main > div.flash div {
+    margin: 15px;
+    border-radius: 10px;
+}
+
+body > main > div.flash div p {
+    padding: 7px;
+    margin: 7px;
+    text-align: left;
+    font-size: 20px;
+}
