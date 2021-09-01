@@ -6,6 +6,8 @@ exports.getSignup = (req, res) => {
     res.render("auth/signup.ejs", {
         pageTitle: "Sign Up",
         isAuth: req.session.isAuth,
+        message: req.flash("message"),
+        error: req.flash("error"),
     });
 };
 
@@ -42,6 +44,7 @@ exports.getLogin = (req, res) => {
         pageTitle: "Login In",
         isAuth: req.session.isAuth,
         message: req.flash("message"),
+        error: req.flash("error"),
     });
 };
 
@@ -80,6 +83,8 @@ exports.getDashboardAccount = (req, res) => {
         pageTitle: "Dashboard-Account",
         isAuth: req.session.isAuth,
         userData: req.session.userData,
+        message: req.flash("message"),
+        error: req.flash("error"),
     });
 };
 

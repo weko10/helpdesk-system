@@ -15,6 +15,8 @@ exports.getNewTicketForm = (req, res) => {
         pageTitle: "Dashboard-New Ticket",
         isAuth: req.session.isAuth,
         userData: req.session.userData,
+        message: req.flash("message"),
+        error: req.flash("error"),
     });
 };
 

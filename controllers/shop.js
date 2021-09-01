@@ -6,5 +6,6 @@ exports.getHome = (req, res) => {
         pageTitle: "Home",
         isAuth: req.session.isAuth,
         message: req.flash("message"),
+        error: req.flash("error"),
     });
 };
