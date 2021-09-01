@@ -10,10 +10,10 @@ Ticket.findAll = (options = {}) => {
     // _user_id INT
 
     try {
-        if (options.where === undefined) {
+        const where = options.where;
+        if (where === undefined) {
             throw new Error("where option was not passed");
         }
-        const where = options.where;
 
         return pool.execute("CALL get_all_tickets(?)", [where.customerId || null]);
     } catch (err) {
@@ -34,9 +34,9 @@ Ticket.create = (options = {}) => {
 
     try {
         //validate options param
-        if (options.attributes === {})
-            throw new Error("Options argrument was not passed any attributes");
         const attributes = options.attributes;
+        if (attributes === undefined)
+            throw new Error("Options argrument was not passed any attributes");
 
         return pool.execute("CALL insert_or_update_ticket(0, ?, ?, ?, ?, ?, ?, ?)", [
             attributes.customerId || null,
@@ -62,9 +62,9 @@ Ticket.createMessage = (options = {}) => {
 
     try {
         //validate options param
-        if (options.attributes === {})
-            throw new Error("Options argrument was not passed any attributes");
         const attributes = options.attributes;
+        if (attributes === undefined)
+            throw new Error("Options argrument was not passed any attributes");
 
         return pool.execute("CALL insert_ticket_message(?, ?, ?, ?)", [
             attributes.ticketId || null,

@@ -14,9 +14,9 @@ User.create = (options = {}) => {
 
     try {
         //validate options param
-        if (options.attributes === {})
-            throw new Error("Options argrument was not passed any attributes");
         const attributes = options.attributes;
+        if (attributes === undefined)
+            throw new Error("Options argrument was not passed any attributes");
 
         return pool.execute("CALL insert_or_update_user(0, ?, ?, ?, ?, ?);", [
             attributes.username || null,
@@ -33,9 +33,9 @@ User.create = (options = {}) => {
 User.findByPK = (options = {}) => {
     try {
         //validate options param
-        if (options.where === {})
-            throw new Error("Options argrument was not passed any where filters");
         const where = options.where;
+        if (where === undefined)
+            throw new Error("Options argrument was not passed any where filters");
 
         return pool.execute("SELECT * FROM user WHERE id = ?", [where.id || null]);
     } catch (err) {
@@ -48,9 +48,9 @@ User.findAll = (options = {}) => {
     // _email VARCHAR(64)
     try {
         //validate options param
-        if (options.where === {})
-            throw new Error("Options argrument was not passed any where filters");
         const where = options.where;
+        if (where === undefined)
+            throw new Error("Options argrument was not passed any where filters");
 
         return pool.execute("CALL get_all_users(?, ?)", [
             where.id || null,
@@ -61,13 +61,13 @@ User.findAll = (options = {}) => {
     }
 };
 
-User.isExist = (options = {}) => {
+User.isExist = (options = undefined) => {
     //Checks if a user exists by user id or email or both
     try {
         //validate options param
-        if (options.where === {})
-            throw new Error("Options argrument was not passed any where filters");
         const where = options.where;
+        if (where === {})
+            throw new Error("Options argrument was not passed any where filters");
 
         return pool.execute("SELECT is_user_exist(?, ?) AS result", [
             where.id || null,
