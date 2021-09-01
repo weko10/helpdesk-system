@@ -1,0 +1,38 @@
+<%- include("../inc/head.ejs") %>
+<link rel="stylesheet" href="/css/nav.css" />
+<link rel="stylesheet" href="/css/dashboard.css" />
+<link rel="stylesheet" href="/css/tickets-table.css">
+<link rel="stylesheet" href="/css/side-nav.css" />
+</head>
+<body>
+    <%- include("../inc/nav.ejs") %>
+    <main>
+        <div class="side_nav">
+            <ul class="top_level">
+                <li><a href="#">Account Info</a></li>
+                <li>
+                    <button id="support_menu">Support</button>
+                    <ul class="second_level">
+                        <li><a href="#">Tickets</a></li>
+                        <li><a href="#">Open New Ticket</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dashboard_box">
+            <h1>My Support Tickets</h1>
+            <table class="tickets_table">
+                <thead>
+                    <tr>
+                        <th>department</th>
+                        <th>subject</th>
+                        <th>status</th>
+                        <th>last updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+<%- include("../inc/end.ejs") %>
