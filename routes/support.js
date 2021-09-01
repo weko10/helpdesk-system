@@ -9,4 +9,6 @@ router.get("/dashboard/new-ticket", auth.isAuth, controller.getNewTicketForm);
 
 router.post("/dashboard/new-ticket", auth.isAuth, controller.postNewTicket);
 
+router.get("/dashboard/tickets", auth.isAuth, controller.getTicketsTable);
+
 module.exports = router;

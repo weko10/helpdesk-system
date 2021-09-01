@@ -50,3 +50,17 @@ exports.postNewTicket = async (req, res) => {
         res.status(400).send(err);
     }
 };
+
+exports.getTicketsTable = async (req, res) => {
+    const [[tickets]] = await Ticket.findAll({
+        where: { customerId: req.session.userData.id },
+    });
+    console.log(tickets);
+    res.render("support/tickets-table.ejs", {
+        pageTitle: "My Tickets",
+        isAuth: req.session.isAuth,
+        message: req.flash("message"),
+        error: req.flash("error"),
+        tickets: tickets,
+    });
+};
