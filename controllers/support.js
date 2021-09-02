@@ -1,6 +1,19 @@
 //controlles operations on tickets made by the customer
 
 const Ticket = require("../models/ticket");
+const moment = require("moment");
+
+const formatDate = date => {
+    return moment(date).format("DD.MM.yyyy (hh:mm)");
+};
+
+const formatTicketsDate = ticketsList => {
+    for (let i = 0; i < ticketsList.length; i++) {
+        const ticket = ticketsList[i];
+
+        ticket.created_at = formatDate(ticket.created_at);
+    }
+};
 
 exports.getHome = (req, res) => {
     res.render("support/home.ejs", {
@@ -58,6 +71,8 @@ exports.getTicketsTable = async (req, res) => {
         const [[tickets]] = await Ticket.findAll({
             where: { customerId: req.session.userData.id },
         });
+
+        formatTicketsDate(tickets);
 
         res.render("support/tickets-table.ejs", {
             pageTitle: "My Tickets",
