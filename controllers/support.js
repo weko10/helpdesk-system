@@ -45,11 +45,11 @@ exports.postNewTicket = async (req, res) => {
             },
         });
 
-        res.send({ message: "success" });
+        req.flash("message", "Successfully opened new ticket");
+        return res.redirect("/dashboard/account");
     } catch (err) {
-        console.log(err);
         req.flash("error", "An error occured. Please try again!");
-        res.redirect("/");
+        return res.redirect("/");
     }
 };
 
