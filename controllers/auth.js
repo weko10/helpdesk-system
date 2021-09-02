@@ -22,7 +22,7 @@ exports.postSignup = async (req, res, next) => {
         }
 
         //create new user in database
-        User.create({
+        await User.create({
             attributes: {
                 username: username,
                 email: email,
@@ -33,11 +33,10 @@ exports.postSignup = async (req, res, next) => {
         });
 
         req.flash("message", "Account created succesfully!");
-        res.redirect("/");
+        return res.redirect("/");
     } catch (err) {
-        console.log(err);
-        req.flash("error", "An error occured. Please try again!");
-        res.redirect("/");
+        req.flash("error", err.message);
+        return res.redirect("/");
     }
 };
 
@@ -73,11 +72,11 @@ exports.postLogin = async (req, res) => {
             phone: user.phone,
             homeAddress: user.home_address,
         };
-        res.redirect("/");
+
+        return res.redirect("/");
     } catch (err) {
-        console.log(err);
-        req.flash("error", "An error occured. Please try again!");
-        res.redirect("/");
+        req.flash("error", err.message);
+        return res.redirect("/");
     }
 };
 
@@ -95,10 +94,9 @@ exports.getDashboardAccount = (req, res) => {
 exports.logout = (req, res) => {
     try {
         req.session.destroy();
-        res.redirect("/");
+        return res.redirect("/");
     } catch (err) {
-        console.log(err);
-        req.flash("error", "An error occured. Please try again!");
-        res.redirect("/");
+        req.flash("error", err.message);
+        return res.redirect("/");
     }
 };
