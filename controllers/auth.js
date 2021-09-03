@@ -1,6 +1,17 @@
 //responsible for authenticating users and operations on sensitive user data
 
 const User = require("../models/user");
+const bcrypt = require("bcryptjs");
+
+//functions
+const hashPassword = async password => {
+    try {
+        const hashed = await bcrypt.hash(password, 4);
+        return hashed;
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 exports.getSignup = (req, res) => {
     res.render("auth/signup.ejs", {
@@ -21,12 +32,14 @@ exports.postSignup = async (req, res, next) => {
             throw new Error("Email already belongs to existing account");
         }
 
+        const hash = await hashPassword(password);
+
         //create new user in database
         await User.create({
             attributes: {
                 username: username,
                 email: email,
-                password: password,
+                password: hash,
                 phone: phone,
                 homeAddress: home_address,
             },
@@ -35,6 +48,7 @@ exports.postSignup = async (req, res, next) => {
         req.flash("message", "Account created succesfully!");
         return res.redirect("/");
     } catch (err) {
+        console.log(err);
         req.flash("error", err.message);
         return res.redirect("/");
     }
