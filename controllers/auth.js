@@ -13,6 +13,17 @@ const hashPassword = async password => {
     }
 };
 
+const comparePassword = async (hashedReference, sample) => {
+    try {
+        const isMatch = await bcrypt.compare(sample, hashedReference);
+        if (!isMatch) {
+            throw Error("Invalid password");
+        }
+    } catch (err) {
+        throw Error("Wrong Password. Please try again!", { cause: err });
+    }
+};
+
 exports.getSignup = (req, res) => {
     res.render("auth/signup.ejs", {
         pageTitle: "Sign Up",
@@ -72,11 +83,9 @@ exports.postLogin = async (req, res) => {
         }
 
         const [[[user]]] = await User.findAll({ where: { email: req.body.email } });
+
         //check password
-        const checkPassword = user.password === req.body.password;
-        if (!checkPassword) {
-            throw new Error("Wrong password");
-        }
+        checkPassword = await comparePassword(user.password, req.body.password);
 
         req.session.isAuth = true;
         req.session.userData = {
