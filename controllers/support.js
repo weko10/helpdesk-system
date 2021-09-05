@@ -37,7 +37,7 @@ exports.postNewTicket = async (req, res) => {
     try {
         const { department_id, priority_level_id, subject, message } = req.body;
 
-        //insert new ticket in database
+        // insert new ticket in database
         const [[[ticket]]] = await Ticket.create({
             attributes: {
                 customerId: req.session.userData.id, //established on login
@@ -49,7 +49,7 @@ exports.postNewTicket = async (req, res) => {
         });
 
         // insert initial message in database
-        await Ticket.createMessage({
+        const [[[ticketMessage]]] = await Ticket.createMessage({
             attributes: {
                 ticketId: ticket.ticket_id,
                 subject: subject,
@@ -57,6 +57,16 @@ exports.postNewTicket = async (req, res) => {
                 fromAgent: 0,
             },
         });
+
+        // insert attachment into database
+        if (req.file !== undefined) {
+            await Ticket.createMessageAttachment({
+                attributes: {
+                    ticketMessageId: ticketMessage.id,
+                    attachmentPath: req.file.path,
+                },
+            });
+        }
 
         req.flash("message", "Successfully opened new ticket");
         return res.redirect("/dashboard/account");
