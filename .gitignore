@@ -4,3 +4,4 @@ node_modules/
 nodemon.json
 secrets.json
 .env
+uploads/
