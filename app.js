@@ -4,6 +4,8 @@ const app = express();
 require("dotenv").config();
 const session = require("express-session");
 const sessionStore = require("./util/session");
+const multer = require("multer");
+const multerStorage = require("./util/multer");
 const flush = require("connect-flash");
 
 app.set("views", "views");
@@ -17,6 +19,7 @@ const authRouter = require("./routes/auth");
 
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
+app.use(multer({ storage: multerStorage }).single("image"));
 app.use(
     session({
         secret: process.env.SESSIONSECRET,
