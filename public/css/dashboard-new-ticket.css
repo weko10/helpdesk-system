@@ -58,6 +58,11 @@
     width: 20rem;
 }
 
+.new_ticket_box #ticket_form div#image {
+    padding: 4px;
+    margin-left: 8px;
+}
+
 .new_ticket_box #ticket_form #subject {
     float: right;
     width: 50rem;
