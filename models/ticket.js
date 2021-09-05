@@ -77,4 +77,27 @@ Ticket.createMessage = (options = {}) => {
     }
 };
 
+Ticket.createMessageAttachment = async (options = {}) => {
+    //Inserts ticket message attachment into attachment table
+    //Procedure params:
+    // _ticket_message_id INT,
+    // _attachment_path VARCHAR(255)
+
+    try {
+        //validate options param
+        const attributes = options.attributes;
+        if (attributes === undefined)
+            throw new Error("Options argrument was not passed any attributes");
+
+        const result = await pool.execute("CALL insert_attachment(?, ?)", [
+            attributes.ticketMessageId,
+            attributes.attachmentPath,
+        ]);
+
+        return result;
+    } catch (err) {
+        throw Error("An error occurred in database!", { cause: err });
+    }
+};
+
 module.exports = Ticket;
