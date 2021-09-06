@@ -7,7 +7,7 @@ exports.notFound = (req, res, next) => {
 
 //logger
 exports.errorLogger = (err, req, res, next) => {
-    console.log("error logger", err);
+    console.log(err);
     next(err);
 };
 
