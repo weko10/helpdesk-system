@@ -2,6 +2,7 @@
 
 const Ticket = require("../models/ticket");
 const moment = require("moment");
+const { noExtendLeft } = require("sequelize/types/lib/operators");
 
 const formatDate = date => {
     return moment(date).format("DD.MM.yyyy (hh:mm)");
@@ -33,7 +34,7 @@ exports.getNewTicketForm = (req, res) => {
     });
 };
 
-exports.postNewTicket = async (req, res) => {
+exports.postNewTicket = async (req, res, next) => {
     try {
         const { department_id, priority_level_id, subject, message } = req.body;
 
@@ -71,12 +72,11 @@ exports.postNewTicket = async (req, res) => {
         req.flash("message", "Successfully opened new ticket");
         return res.redirect("/dashboard/account");
     } catch (err) {
-        req.flash("error", "An error occured. Please try again!");
-        return res.redirect("/");
+        next(err);
     }
 };
 
-exports.getTicketsTable = async (req, res) => {
+exports.getTicketsTable = async (req, res, next) => {
     try {
         const [[tickets]] = await Ticket.findAll({
             where: { customerId: req.session.userData.id },
@@ -92,8 +92,6 @@ exports.getTicketsTable = async (req, res) => {
             tickets: tickets,
         });
     } catch (err) {
-        console.log(err);
-        req.flash("error", "An error occured. Please try again!");
-        res.redirect("/");
+        next(err);
     }
 };
