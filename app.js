@@ -46,4 +46,4 @@ app.get("/throw", (req, res, next) => {
     }
 });
 
-app.use([notFound, logger, responder]);
+app.use(notFound, logger, responder);
