@@ -9,7 +9,7 @@ const hashPassword = async password => {
         const hashed = await bcrypt.hash(password, 4);
         return hashed;
     } catch (err) {
-        console.log(err);
+        throw err;
     }
 };
 
@@ -59,9 +59,7 @@ exports.postSignup = async (req, res, next) => {
         req.flash("message", "Account created succesfully!");
         return res.redirect("/");
     } catch (err) {
-        console.log(err);
-        req.flash("error", err.message);
-        return res.redirect("/");
+        next(err);
     }
 };
 
@@ -98,8 +96,7 @@ exports.postLogin = async (req, res) => {
 
         return res.redirect("/");
     } catch (err) {
-        req.flash("error", err.message);
-        return res.redirect("/");
+        next(err);
     }
 };
 
@@ -119,7 +116,6 @@ exports.logout = (req, res) => {
         req.session.destroy();
         return res.redirect("/");
     } catch (err) {
-        req.flash("error", err.message);
-        return res.redirect("/");
+        next(err);
     }
 };
