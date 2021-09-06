@@ -1,3 +1,10 @@
+//route not found
+exports.notFound = (req, res, next) => {
+    const error = new Error("Page Not Found");
+    error.statusCode = 404;
+    next(error);
+};
+
 //logger
 exports.errorLogger = (err, req, res, next) => {
     console.log(err);
@@ -6,6 +13,11 @@ exports.errorLogger = (err, req, res, next) => {
 
 //responder
 exports.errorResponder = (err, req, res, next) => {
-    res.header("Content-Type", "application/json");
-    res.status(err.statusCode).send(JSON.stringify(err, null, 4));
+    if (err.statusCode >= 400 && err.statusCode < 500) {
+        res.status(err.statusCode).render("error/4xx.ejs", {
+            pageTitle: "Error",
+            isAuth: req.session.isAuth,
+            err: err,
+        });
+    }
 };
