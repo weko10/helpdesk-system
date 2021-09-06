@@ -2,7 +2,6 @@
 
 const Ticket = require("../models/ticket");
 const moment = require("moment");
-const { noExtendLeft } = require("sequelize/types/lib/operators");
 
 const formatDate = date => {
     return moment(date).format("DD.MM.yyyy (hh:mm)");
