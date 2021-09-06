@@ -7,7 +7,7 @@ exports.notFound = (req, res, next) => {
 
 //logger
 exports.errorLogger = (err, req, res, next) => {
-    console.log(err);
+    console.log("error logger", err);
     next(err);
 };
 
@@ -19,5 +19,14 @@ exports.errorResponder = (err, req, res, next) => {
             isAuth: req.session.isAuth,
             err: err,
         });
+    } else if (err.statusCode >= 500 && err.statusCode < 600) {
+        console.log("entered");
+        res.status(err.statusCode).render("error/5xx.ejs", {
+            pageTitle: "Error",
+            isAuth: req.session.isAuth,
+            err: err,
+        });
+    } else {
+        res.status(500).send("<h1>Something wrong happend</h1>");
     }
 };
