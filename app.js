@@ -17,6 +17,7 @@ app.listen(3000, console.log("App is listening on http://localhost:3000/"));
 const supportRouter = require("./routes/support");
 const homeRouter = require("./routes/shop");
 const authRouter = require("./routes/auth");
+const error = require("./routes/error");
 
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
@@ -34,3 +35,4 @@ app.use(flush());
 app.use("/", homeRouter);
 app.use(authRouter);
 app.use(supportRouter);
+app.use(error);
