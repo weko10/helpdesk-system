@@ -15,7 +15,10 @@ Ticket.findAll = (options = {}) => {
             throw new Error("where option was not passed");
         }
 
-        return pool.execute("CALL get_all_tickets(?)", [where.customerId || null]);
+        return pool.execute("CALL get_all_tickets(?, ?)", [
+            where.customerId || 0,
+            where.ticketId || null,
+        ]);
     } catch (err) {
         console.log(err);
     }
