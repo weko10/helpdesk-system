@@ -1,15 +1,17 @@
+//catch it all route
 exports.notFound = (req, res, next) => {
     const error = new Error("Page Not Found");
     error.statusCode = 404;
     next(error);
 };
 
+//logs error to consoles
 exports.logger = (err, req, res, next) => {
     console.log(err);
     next(err);
 };
 
-//responder
+//sends a response to the client
 exports.responder = (err, req, res, next) => {
     if (err.statusCode >= 400 && err.statusCode < 500) {
         res.status(err.statusCode).render("error/4xx.ejs", {
