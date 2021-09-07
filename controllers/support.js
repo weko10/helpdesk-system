@@ -95,11 +95,20 @@ exports.getTicketsTable = async (req, res, next) => {
     }
 };
 
-exports.getTicketChat = (req, res, next) => {
+exports.getTicketChat = async (req, res, next) => {
     try {
+        //fetch ticket details from database
+        const [[[ticket]]] = await Ticket.findAll({
+            where: { customerId: req.session.userData.id, ticketId: req.params.id },
+        });
+        if (ticket === undefined) {
+            throw Error("No ticket found. Please try again.");
+        }
+
         res.render("support/ticket-chat.ejs", {
             pageTitle: "Ticket Chat",
             isAuth: req.session.isAuth,
+            ticket: ticket,
         });
     } catch (err) {
         next(err);
