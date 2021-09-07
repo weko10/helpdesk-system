@@ -67,9 +67,8 @@ Ticket.createMessage = (options = {}) => {
         if (attributes === undefined)
             throw new Error("Options argrument was not passed any attributes");
 
-        return pool.execute("CALL insert_ticket_message(?, ?, ?, ?)", [
+        return pool.execute("CALL insert_ticket_message(?, ?, ?)", [
             attributes.ticketId || null,
-            attributes.subject || null,
             attributes.body || null,
             attributes.fromAgent,
         ]);
