@@ -97,7 +97,10 @@ exports.getTicketsTable = async (req, res, next) => {
 
 exports.getTicketChat = (req, res, next) => {
     try {
-        res.send("ticket chat will be displayed here");
+        res.render("support/ticket-chat.ejs", {
+            pageTitle: "Ticket Chat",
+            isAuth: req.session.isAuth,
+        });
     } catch (err) {
         next(err);
     }
