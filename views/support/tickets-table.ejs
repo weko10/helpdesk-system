@@ -26,7 +26,7 @@
                         <tr>
                             <th><%= tickets[i].ticket_id %></th>
                             <th><%= tickets[i].department %></th>
-                            <th><%= tickets[i].subject %></th>
+                            <th><a href="/dashboard/ticket/<%= tickets[i].ticket_id %>"><%= tickets[i].subject %></a></th>
                             <th><%= tickets[i].status %></th>
                             <th><%= tickets[i].created_at %></th>
                         </tr>
