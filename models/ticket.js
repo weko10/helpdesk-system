@@ -29,6 +29,7 @@ Ticket.create = (options = {}) => {
     // priority_level_id IS NOT NULL,
     // channel_id IS NOT NULL,
     // status_id DEFAULT NULL,
+    // _subject VARCHAR(255),
     // category_id DEFAULT NULL,
     // current_agent_id DEFAULT NULL
 
@@ -38,12 +39,13 @@ Ticket.create = (options = {}) => {
         if (attributes === undefined)
             throw new Error("Options argrument was not passed any attributes");
 
-        return pool.execute("CALL insert_or_update_ticket(0, ?, ?, ?, ?, ?, ?, ?)", [
+        return pool.execute("CALL insert_or_update_ticket(0, ?, ?, ?, ?, ?, ?, ?, ?)", [
             attributes.customerId || null,
             attributes.departmentId || null,
             attributes.priorityLevelId || null,
             attributes.channelId || null,
             attributes.statusId || null,
+            attributes.subject || null,
             attributes.categoryId || null,
             attributes.currentAgentId || null,
         ]);
@@ -56,7 +58,6 @@ Ticket.createMessage = (options = {}) => {
     //Inserts new ticket message using procedure
     //Procedure attributes:
     // _ticket_id INT,
-    // _subject VARCHAR(255),
     // _body TEXT,
     // _from_agent BOOLEAN
 
