@@ -94,3 +94,11 @@ exports.getTicketsTable = async (req, res, next) => {
         next(err);
     }
 };
+
+exports.getTicketChat = (req, res, next) => {
+    try {
+        res.send("ticket chat will be displayed here");
+    } catch (err) {
+        next(err);
+    }
+};
