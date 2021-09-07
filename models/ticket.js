@@ -4,10 +4,11 @@ const pool = require("../util/database");
 
 const Ticket = {};
 
-Ticket.findAll = (options = {}) => {
+Ticket.findAll = async (options = {}) => {
     //Fetches all tickets by user id
     //Procdure parameters:
     // _user_id INT
+    // _ticket_id INT
 
     try {
         const where = options.where;
@@ -15,16 +16,18 @@ Ticket.findAll = (options = {}) => {
             throw new Error("where option was not passed");
         }
 
-        return pool.execute("CALL get_all_tickets(?, ?)", [
+        const result = await pool.execute("CALL get_all_tickets(?, ?)", [
             where.customerId || 0,
             where.ticketId || null,
         ]);
+
+        return result;
     } catch (err) {
-        console.log(err);
+        throw Error("An error occurred in database!", { cause: err });
     }
 };
 
-Ticket.create = (options = {}) => {
+Ticket.create = async (options = {}) => {
     //Inserts a new ticket using procedure
     //Procedure parameters in order:
     // customer_id IS NOT NULL,
@@ -42,22 +45,27 @@ Ticket.create = (options = {}) => {
         if (attributes === undefined)
             throw new Error("Options argrument was not passed any attributes");
 
-        return pool.execute("CALL insert_or_update_ticket(0, ?, ?, ?, ?, ?, ?, ?, ?)", [
-            attributes.customerId || null,
-            attributes.departmentId || null,
-            attributes.priorityLevelId || null,
-            attributes.channelId || null,
-            attributes.statusId || null,
-            attributes.subject || null,
-            attributes.categoryId || null,
-            attributes.currentAgentId || null,
-        ]);
+        const result = await pool.execute(
+            "CALL insert_or_update_ticket(0, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [
+                attributes.customerId || null,
+                attributes.departmentId || null,
+                attributes.priorityLevelId || null,
+                attributes.channelId || null,
+                attributes.statusId || null,
+                attributes.subject || null,
+                attributes.categoryId || null,
+                attributes.currentAgentId || null,
+            ]
+        );
+
+        return result;
     } catch (err) {
-        res.send(err);
+        throw Error("An error occurred in database!", { cause: err });
     }
 };
 
-Ticket.createMessage = (options = {}) => {
+Ticket.createMessage = async (options = {}) => {
     //Inserts new ticket message using procedure
     //Procedure attributes:
     // _ticket_id INT,
@@ -70,13 +78,15 @@ Ticket.createMessage = (options = {}) => {
         if (attributes === undefined)
             throw new Error("Options argrument was not passed any attributes");
 
-        return pool.execute("CALL insert_ticket_message(?, ?, ?)", [
+        const result = await pool.execute("CALL insert_ticket_message(?, ?, ?)", [
             attributes.ticketId || null,
             attributes.body || null,
             attributes.fromAgent,
         ]);
+
+        return result;
     } catch (err) {
-        res.send(err);
+        throw Error("An error occurred in database!", { cause: err });
     }
 };
 
