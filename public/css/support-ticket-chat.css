@@ -1,0 +1,23 @@
+body main {
+    display: flex;
+}
+
+div.box {
+    background-color: rgba(211, 211, 211, 0.712);
+}
+
+div.ticket_chat {
+    align-self: stretch;
+    width: 600px;
+    padding: 12px;
+    margin: 20px;
+}
+
+div.box div.ticket_info h5,
+div.box div.reply_info h5 {
+    display: inline;
+}
+
+div.ticket_chat h5 {
+    font-weight: lighter;
+}
