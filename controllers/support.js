@@ -45,14 +45,14 @@ exports.postNewTicket = async (req, res, next) => {
                 priorityLevelId: priority_level_id,
                 channelId: 2,
                 statusId: 1,
+                subject: subject,
             },
         });
 
         // insert initial message in database
         const [[[ticketMessage]]] = await Ticket.createMessage({
             attributes: {
-                ticketId: ticket.ticket_id,
-                subject: subject,
+                ticketId: ticket.id,
                 body: message,
                 fromAgent: 0,
             },
