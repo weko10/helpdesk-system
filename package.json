@@ -1,7 +1,7 @@
 {
     "name": "helpdesk-system",
     "version": "1.0.0",
-    "description": "",
+    "description": "User support system, mainly focusing on ticketing.",
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
