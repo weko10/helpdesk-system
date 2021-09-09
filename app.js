@@ -12,7 +12,7 @@ const flush = require("connect-flash");
 app.set("views", "views");
 app.set("template engine", "ejs");
 
-app.listen(3000, console.log("App is listening on http://localhost:3000/"));
+app.listen(process.env.PORT, console.log("App is listening on http://localhost:3000/"));
 
 const supportRouter = require("./routes/support");
 const homeRouter = require("./routes/shop");
@@ -33,7 +33,7 @@ app.use(
 );
 app.use(flush());
 
-app.use("/", homeRouter);
+app.use(homeRouter);
 app.use(authRouter);
 app.use(supportRouter);
 app.use("/api", ticketApi);
