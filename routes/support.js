@@ -13,4 +13,6 @@ router.get("/dashboard/tickets", auth.isAuth, controller.getTicketsTable);
 
 router.get("/dashboard/ticket/:id", auth.isAuth, controller.getTicketChat);
 
+router.get("/api/ticket/:id/messages", controller.getTicketMessages);
+
 module.exports = router;

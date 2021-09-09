@@ -95,6 +95,7 @@ exports.getTicketsTable = async (req, res, next) => {
     }
 };
 
+//task: remove chat
 exports.getTicketChat = async (req, res, next) => {
     try {
         //fetch ticket details from database
@@ -111,6 +112,19 @@ exports.getTicketChat = async (req, res, next) => {
             username: req.session.userData.username,
             ticket: ticket,
         });
+    } catch (err) {
+        next(err);
+    }
+};
+
+//api route
+exports.getTicketMessages = async (req, res, next) => {
+    try {
+        const [[messages]] = await Ticket.findTicketMessages({
+            where: { ticketId: req.params.id },
+        });
+
+        res.json(messages);
     } catch (err) {
         next(err);
     }

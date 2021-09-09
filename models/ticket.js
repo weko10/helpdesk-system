@@ -125,7 +125,7 @@ Ticket.findTicketMessages = async (options = {}) => {
             throw new Error("Options argrument was not passed any filters");
 
         const result = await pool.execute("CALL get_ticket_messages(?)", [
-            where.ticket_id,
+            where.ticketId,
         ]);
 
         return result;
