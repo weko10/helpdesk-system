@@ -113,4 +113,25 @@ Ticket.createMessageAttachment = async (options = {}) => {
     }
 };
 
+Ticket.findTicketMessages = async (options = {}) => {
+    //gets all ticket messages using the ticket id
+    //Procedure attributes:
+    // _ticket_id INT
+
+    try {
+        //validate options param
+        const where = options.where;
+        if (where === undefined)
+            throw new Error("Options argrument was not passed any filters");
+
+        const result = await pool.execute("CALL get_ticket_messages(?)", [
+            where.ticket_id,
+        ]);
+
+        return result;
+    } catch (err) {
+        throw Error("An error occurred in database!", { cause: err });
+    }
+};
+
 module.exports = Ticket;
