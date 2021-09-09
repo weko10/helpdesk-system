@@ -20,7 +20,6 @@ exports.responder = (err, req, res, next) => {
             err: err,
         });
     } else if (err.statusCode >= 500 && err.statusCode < 600) {
-        console.log("entered");
         res.status(err.statusCode).render("error/5xx.ejs", {
             pageTitle: "Error",
             isAuth: req.session.isAuth,
