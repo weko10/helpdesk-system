@@ -116,16 +116,3 @@ exports.getTicketChat = async (req, res, next) => {
         next(err);
     }
 };
-
-//api route
-exports.getTicketMessages = async (req, res, next) => {
-    try {
-        const [[messages]] = await Ticket.findTicketMessages({
-            where: { ticketId: req.params.id },
-        });
-
-        res.json(messages);
-    } catch (err) {
-        next(err);
-    }
-};

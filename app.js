@@ -17,6 +17,7 @@ app.listen(3000, console.log("App is listening on http://localhost:3000/"));
 const supportRouter = require("./routes/support");
 const homeRouter = require("./routes/shop");
 const authRouter = require("./routes/auth");
+const ticketApi = require("./routes/api/ticket");
 const { notFound, logger, responder } = require("./controllers/error"); //error handlers
 
 app.use(express.static("./public"));
@@ -35,6 +36,7 @@ app.use(flush());
 app.use("/", homeRouter);
 app.use(authRouter);
 app.use(supportRouter);
+app.use("/api", ticketApi);
 
 app.get("/throw", (req, res, next) => {
     try {
