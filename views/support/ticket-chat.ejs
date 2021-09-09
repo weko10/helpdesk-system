@@ -9,8 +9,9 @@
         <div class="box ticket_chat">
             <h1>Subject: <%= ticket.subject %></h1>
             <div class="ticket_info">
-                <h5>Created at: [00.00.000 00:00]</h5>
-                <h5>By: [demo customer]</h5>
+                <h5>Created at: </h5>
+                <h5 class="date"><%= ticket.created_at %></h5>
+                <h5>By: <%= username %></h5>
                 <h5>Status: <%= ticket.status %></h5>
                 <h5>Current agent: [agent name if exists]</h5>
             </div>
@@ -32,4 +33,6 @@
             </div>
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/ticket-chat.js"></script>
 <%- include("../inc/end.ejs") %>

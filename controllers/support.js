@@ -108,6 +108,7 @@ exports.getTicketChat = async (req, res, next) => {
         res.render("support/ticket-chat.ejs", {
             pageTitle: "Ticket Chat",
             isAuth: req.session.isAuth,
+            username: req.session.userData.username,
             ticket: ticket,
         });
     } catch (err) {
