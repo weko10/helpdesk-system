@@ -17,13 +17,13 @@ exports.responder = (err, req, res, next) => {
         res.status(err.statusCode).render("error/4xx.ejs", {
             pageTitle: "Error",
             isAuth: req.session.isAuth,
-            err: err,
+            error: err,
         });
     } else if (err.statusCode >= 500 && err.statusCode < 600) {
         res.status(err.statusCode).render("error/5xx.ejs", {
             pageTitle: "Error",
             isAuth: req.session.isAuth,
-            err: err,
+            error: err,
         });
     } else {
         res.status(500).send("<h1>Something wrong happend</h1>");
