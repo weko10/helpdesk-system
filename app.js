@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 require("dotenv").config();
+const helmet = require("helmet");
 const session = require("express-session");
 const sessionStore = require("./util/session");
 const multer = require("multer");
@@ -20,6 +21,7 @@ const authRouter = require("./routes/auth");
 const ticketApi = require("./routes/api/ticket");
 const { notFound, logger, responder } = require("./controllers/error"); //error handlers
 
+app.use(helmet());
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(multer({ storage: multerStorage, fileFilter: multerFileFilter }).single("image"));
