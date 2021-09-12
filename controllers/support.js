@@ -1,6 +1,7 @@
 //controlles operations on tickets made by the customer
 
 const Ticket = require("../models/ticket");
+const { validationResult } = require("express-validator");
 const moment = require("moment");
 
 const formatDate = date => {
@@ -35,6 +36,13 @@ exports.getNewTicketForm = (req, res) => {
 
 exports.postNewTicket = async (req, res, next) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const error = new Error(errors.array()[0].msg);
+            error.statusCode = 422;
+            throw error;
+        }
+
         const { department_id, priority_level_id, subject, message } = req.body;
 
         // insert new ticket in database

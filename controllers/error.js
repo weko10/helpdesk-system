@@ -14,6 +14,11 @@ exports.logger = (err, req, res, next) => {
 //sends a response to the client
 exports.responder = (err, req, res, next) => {
     if (err.statusCode >= 400 && err.statusCode < 500) {
+        console.log("look here", err.message);
+        if (err.statusCode == 422) {
+            req.flash("error", err.message);
+            res.redirect(req.path);
+        }
         res.status(err.statusCode).render("error/4xx.ejs", {
             pageTitle: "Error",
             isAuth: req.session.isAuth,
