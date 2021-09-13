@@ -1,13 +1,13 @@
-<div class="flash">
-    <% if (!locals.message) message=''%>
-    <% if (!locals.error) error='' %>
-    <% if (message.length > 0) { %>
-        <div class="message">
-            <p id="message"><%= message %> </p>
-        </div>
-    <% } else if (error.length > 0) {%>
-        <div class="error">
-            <p id="error"><%= error %> </p>
-        </div>
-    <% } %>
-</div>
+<% if (message === false || message === null) { %>
+    <!-- do nothing -->
+<% } else if (message.success !== null) { %>
+    <div class="message success">
+        <p><%= message.success %></p>
+    </div>
+<% } else if (message.error !== null) { %>
+    <div class="message error">
+        <p><%= message.error %></p>
+    </div>
+<% } else { %>
+    <p>something is wrong with message middleware</p>
+<% } %>

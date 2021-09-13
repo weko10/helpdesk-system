@@ -8,20 +8,20 @@ body {
     font-family: "segoe ui";
 }
 
-body > main > div.flash div.message {
+body > main > div.message.success {
     background-color: rgba(39, 156, 39, 0.472);
 }
 
-body > main > div.flash div.error {
+body > main > div.message.error {
     background-color: rgba(255, 0, 0, 0.418);
 }
 
-body > main > div.flash div {
+body > main > div.message {
     margin: 15px;
     border-radius: 10px;
 }
 
-body > main > div.flash div p {
+body > main > div.message p {
     padding: 7px;
     margin: 7px;
     text-align: left;
