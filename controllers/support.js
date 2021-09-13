@@ -20,6 +20,7 @@ exports.getHome = (req, res) => {
     res.render("support/home.ejs", {
         pageTitle: "Support",
         isAuth: req.session.isAuth,
+        message: req.message,
     });
 };
 
@@ -29,8 +30,7 @@ exports.getNewTicketForm = (req, res) => {
         pageTitle: "Dashboard-New Ticket",
         isAuth: req.session.isAuth,
         userData: req.session.userData,
-        message: req.flash("message"),
-        error: req.flash("error"),
+        message: req.message,
     });
 };
 
@@ -94,8 +94,7 @@ exports.getTicketsTable = async (req, res, next) => {
         res.render("support/tickets-table.ejs", {
             pageTitle: "My Tickets",
             isAuth: req.session.isAuth,
-            message: req.flash("message"),
-            error: req.flash("error"),
+            message: req.message,
             tickets: tickets,
         });
     } catch (err) {
@@ -119,6 +118,7 @@ exports.getTicketChat = async (req, res, next) => {
             isAuth: req.session.isAuth,
             username: req.session.userData.username,
             ticket: ticket,
+            message: req.message,
         });
     } catch (err) {
         next(err);
