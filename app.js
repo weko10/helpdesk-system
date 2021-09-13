@@ -8,7 +8,7 @@ const sessionStore = require("./util/session");
 const multer = require("multer");
 const multerStorage = require("./util/multer").storage;
 const multerFileFilter = require("./util/multer").fileFilter;
-const flash = require("connect-flash");
+const flash = require("./util/flash");
 
 app.set("views", "views");
 app.set("template engine", "ejs");
@@ -33,7 +33,7 @@ app.use(
         store: sessionStore,
     })
 );
-app.use(flash());
+app.use(flash);
 
 app.use(homeRouter);
 app.use(authRouter);
