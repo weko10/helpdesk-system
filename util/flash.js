@@ -13,12 +13,12 @@ router.use((req, res, next) => {
     message = message[0];
 
     //modify message to ease its use in ejs
-    if (message.success === undefined || message.success === false)
+    if (message === undefined || message === false) message = null;
+    else if (message.success === undefined || message.success === false)
         message.success = null;
     else if (message.error === undefined || message.error === false) message.error = null;
-    else if (message === undefined || message === false) message = null;
 
-    console.log(message);
+    console.log("hey", message);
     req.message = message;
     next();
 });
