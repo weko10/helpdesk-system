@@ -40,6 +40,17 @@ app.use(authRouter);
 app.use(supportRouter);
 app.use("/api", ticketApi);
 
+//test routes
+app.get("/message/success", (req, res) => {
+    req.flash("message", { success: "horaay" });
+    res.redirect("/");
+});
+
+app.get("/message/error", (req, res) => {
+    req.flash("message", { error: "error" });
+    res.redirect("/");
+});
+
 app.get("/throw", (req, res, next) => {
     try {
         const error = new Error("Async Broken");
