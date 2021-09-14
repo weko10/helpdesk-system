@@ -2,6 +2,8 @@
 
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const { validationResult } = require("express-validator");
+const InvalidInputError = require("../util/errors").InvalidInputError;
 
 //functions
 const hashPassword = async password => {
@@ -34,6 +36,9 @@ exports.getSignup = (req, res) => {
 
 exports.postSignup = async (req, res, next) => {
     try {
+        const errors = validationResult(req).array();
+        console.log(errors);
+
         const { username, email, password, phone, home_address } = req.body;
 
         //check if another account has the same email
@@ -70,8 +75,13 @@ exports.getLogin = (req, res) => {
     });
 };
 
-exports.postLogin = async (req, res) => {
+exports.postLogin = async (req, res, next) => {
     try {
+        const errors = validationResult(req).array();
+        console.log(errors);
+        if (errors.length > 0)
+            throw new InvalidInputError(errors[0].msg, errors[0].param);
+
         //check if this email belongs to an existing email
         const [[isExist]] = await User.isExist({ where: { email: req.body.email } });
         if (!isExist.result) {

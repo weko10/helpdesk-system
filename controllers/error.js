@@ -7,16 +7,15 @@ exports.notFound = (req, res, next) => {
 
 //logs error to consoles
 exports.logger = (err, req, res, next) => {
-    console.error(err);
+    console.error("Error Logger", err);
     next(err);
 };
 
 //sends a response to the client
 exports.responder = (err, req, res, next) => {
     if (err.statusCode >= 400 && err.statusCode < 500) {
-        console.log("look here", err.message);
         if (err.statusCode == 422) {
-            req.flash("error", err.message);
+            req.flash("message", { error: err.message });
             res.redirect(req.path);
         }
         res.status(err.statusCode).render("error/4xx.ejs", {
