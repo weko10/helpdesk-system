@@ -37,7 +37,6 @@ exports.getSignup = (req, res) => {
 exports.postSignup = async (req, res, next) => {
     try {
         const errors = validationResult(req).array();
-        console.log(errors);
         if (errors.length > 0)
             throw new InvalidInputError(errors[0].msg, errors[0].param);
 
@@ -80,7 +79,6 @@ exports.getLogin = (req, res) => {
 exports.postLogin = async (req, res, next) => {
     try {
         const errors = validationResult(req).array();
-        console.log(errors);
         if (errors.length > 0)
             throw new InvalidInputError(errors[0].msg, errors[0].param);
 

@@ -38,7 +38,6 @@ exports.getNewTicketForm = (req, res) => {
 exports.postNewTicket = async (req, res, next) => {
     try {
         const errors = validationResult(req).array();
-        console.log(errors);
         if (errors.length > 0)
             throw new InvalidInputError(errors[0].msg, errors[0].param);
 

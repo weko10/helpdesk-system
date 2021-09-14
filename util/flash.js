@@ -18,7 +18,6 @@ router.use((req, res, next) => {
         message.success = null;
     else if (message.error === undefined || message.error === false) message.error = null;
 
-    console.log("hey", message);
     req.message = message;
     next();
 });
