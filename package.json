@@ -3,8 +3,12 @@
     "version": "1.0.0",
     "description": "User support system, mainly focusing on ticketing.",
     "main": "app.js",
+    "engines": {
+        "node": "14.17.1"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+        "heroku": "node app.js",
         "start": "nodemon app.js"
     },
     "author": "Waleyeldeen Osman",
