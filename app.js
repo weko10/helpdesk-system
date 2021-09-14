@@ -7,9 +7,11 @@ const compression = require("compression");
 const session = require("express-session");
 const sessionStore = require("./util/session");
 const multer = require("multer");
+const morgan = require("morgan");
 const multerStorage = require("./util/multer").storage;
 const multerFileFilter = require("./util/multer").fileFilter;
 const flash = require("./util/flash");
+const { accessLogStream } = require("./util/logger");
 
 app.set("views", "views");
 app.set("template engine", "ejs");
@@ -24,6 +26,9 @@ const homeRouter = require("./routes/shop");
 const authRouter = require("./routes/auth");
 const ticketApi = require("./routes/api/ticket");
 const { notFound, logger, responder } = require("./controllers/error"); //error handlers
+
+// setup the logger
+app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(compression());
 app.use(helmet());
