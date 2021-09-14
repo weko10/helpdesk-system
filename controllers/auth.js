@@ -38,6 +38,8 @@ exports.postSignup = async (req, res, next) => {
     try {
         const errors = validationResult(req).array();
         console.log(errors);
+        if (errors.length > 0)
+            throw new InvalidInputError(errors[0].msg, errors[0].param);
 
         const { username, email, password, phone, home_address } = req.body;
 

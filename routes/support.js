@@ -25,7 +25,7 @@ router.post(
         check(
             "subject",
             "Something is wrong with the subject. Please try again!"
-        ).isByteLength({ max: 255 }),
+        ).isByteLength({ min: 3, max: 255 }),
         check(
             "message",
             "Something is wrong with the message. Please try again!"
