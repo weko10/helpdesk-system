@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const helmet = require("helmet");
 const compression = require("compression");
 const session = require("express-session");
@@ -14,7 +14,10 @@ const flash = require("./util/flash");
 app.set("views", "views");
 app.set("template engine", "ejs");
 
-app.listen(process.env.PORT, console.log("App is listening on http://localhost:3000/"));
+app.listen(
+    process.env.PORT || 3000,
+    console.log("App is listening on http://localhost:3000/")
+);
 
 const supportRouter = require("./routes/support");
 const homeRouter = require("./routes/shop");
