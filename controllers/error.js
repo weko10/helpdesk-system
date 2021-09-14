@@ -1,8 +1,9 @@
 //catch it all route
 exports.notFound = (req, res, next) => {
-    const error = new Error("Page Not Found");
-    error.statusCode = 404;
-    next(error);
+    res.render("error/404.ejs", {
+        pageTitle: "Page Not Found",
+        isAuth: req.session.isAuth,
+    });
 };
 
 //logs error to consoles
@@ -12,17 +13,10 @@ exports.logger = (err, req, res, next) => {
 };
 
 //sends a response to the client
-exports.responder = (err, req, res, next) => {
+exports.responder = async (err, req, res, next) => {
     if (err.statusCode >= 400 && err.statusCode < 500) {
-        if (err.statusCode == 422) {
-            req.flash("message", { error: err.message });
-            res.redirect(req.path);
-        }
-        res.status(err.statusCode).render("error/4xx.ejs", {
-            pageTitle: "Error",
-            isAuth: req.session.isAuth,
-            error: err,
-        });
+        await req.flash("message", { error: err.message });
+        res.redirect(302, req.path);
     } else if (err.statusCode >= 500 && err.statusCode < 600) {
         res.status(err.statusCode).render("error/5xx.ejs", {
             pageTitle: "Error",
@@ -30,6 +24,6 @@ exports.responder = (err, req, res, next) => {
             error: err,
         });
     } else {
-        res.status(500).send("<h1>Something wrong happend</h1>");
+        res.status(500).send(`<h1>Something wrong happend</h1> <p>${err}</p>`);
     }
 };

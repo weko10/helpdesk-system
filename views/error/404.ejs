@@ -5,9 +5,6 @@
 <body>
     <%- include("../inc/nav.ejs") %>
     <main>
-        <%- include("../inc/flash.ejs") %>
-
-        <% if (err.statusCode === 404) { %>
             <div class="status-404">
   <div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 355">
@@ -296,6 +293,5 @@
 </svg>
   </div>
             </div>
-        <% } %>
     </main>
 <%- include("../inc/end.ejs") %>
