@@ -9,7 +9,7 @@
         <%- include("../inc/flash.ejs") %>
 
         <h1>Login:</h1>
-        <form class="box" action="/auth/login" method="POST">
+        <form class="box" action="/auth/login" method="POST" novalidate>
             <input id="email" type="email" name="email" placeholder="Email" required />
             <div id="div-password">
                 <input type="password" name="password" id="password" placeholder="Password" required />
