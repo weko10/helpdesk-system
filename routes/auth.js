@@ -23,10 +23,9 @@ router.post(
         .notEmpty()
         .isString()
         .isStrongPassword(),
-    check(
-        "phone",
-        "Something is  wrong with the phone number! Please try again."
-    ).isMobilePhone(),
+    check("phone", "Something is wrong with the phone number! Please try again.")
+        .optional({ checkFalsy: true })
+        .isMobilePhone(),
     controller.postSignup
 );
 
